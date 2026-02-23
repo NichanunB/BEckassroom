@@ -2,14 +2,14 @@ version: "3.8"
 
 services:
   database:
-    container_name: web2-database
     image: postgres:16
+    container_name: web2-database
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: web2
     ports:
-      - "5432:5432"
+    - "5436:5432"
     volumes:
       - ./databasepg:/var/lib/postgresql/data
     healthcheck:
@@ -34,6 +34,7 @@ services:
       SUBMISSIONS_DIR: /app/data/submissions
       RESULTS_DIR: /app/data/security_scan_results
       HOST_SUBMISSIONS_BASE: /host/data/submissions
+      DATABASE_URL: postgresql+psycopg2://admin:admin@database:5432/web2
 
       DATABASE_HOST: database
       DATABASE_PORT: 5432
